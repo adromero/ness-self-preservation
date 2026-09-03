@@ -1,0 +1,17 @@
+Does FEAR (reserve hoarding, SINGLE currency) evolve from 0?  (fear_max=1.5)
+
+FULL (slow + groups + private)     final mean_fear = 0.102 ± 0.019   (pop 245, n_seeds=4)
+
+-- ablations: remove one escape at a time --
+no private risk                    final mean_fear = 0.095 ± 0.015   (pop 244, n_seeds=4)
+./eco_life.py:192: RuntimeWarning: Mean of empty slice
+  print(f"{label:34} final mean_fear = {np.nanmean(fears):.3f} ± {np.nanstd(fears):.3f}   "
+./.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+no groups (well-mixed)             final mean_fear = nan ± nan   (pop 0, n_seeds=4)
+./eco_life.py:194: RuntimeWarning: Mean of empty slice
+  return np.nanmean(fears)
+no slow-life (fast turnover)       final mean_fear = 0.071 ± 0.008   (pop 251, n_seeds=4)
+
+-- NESS-like control: all escapes off --
+none (fast, well-mixed, shared)    final mean_fear = nan ± nan   (pop 0, n_seeds=4)

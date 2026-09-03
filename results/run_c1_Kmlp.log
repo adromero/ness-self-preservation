@@ -1,0 +1,28 @@
+
+=== baseline (terminal_repro=False)  lam=0.5 N=64 S=90.0 decay=0.06 brood=1 ===
+  seed=4000 n= 32  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=4001 n= 50  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=4002 n= 55  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=4003 n= 54  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=4004 n= 56  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=4005 n= 54  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=4006 n= 34  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=4007 n= 53  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=4008 n= 64  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=4009 n= 45  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  >>> baseline: mean(real-scram) = +0.000 ± 0.000  (SEM 0.000, n=10)
+
+=== actionable (terminal_repro=True)  lam=0.5 N=64 S=90.0 decay=0.06 brood=1 ===
+  seed=4000 n= 31  L0=0.000 real=1.000 scram=0.000  (real-scram)=+1.000  term_b=406
+  seed=4001 n= 27  L0=0.938 real=0.021 scram=0.041  (real-scram)=-0.019  term_b=833
+  seed=4002 n= 46  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=575
+  seed=4003 n=  0  L0=0.952 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=764
+  seed=4004 n= 53  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=984
+  seed=4005 n= 31  L0=0.929 real=0.048 scram=0.023  (real-scram)=+0.025  term_b=4151
+  seed=4006 n= 25  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=587
+  seed=4007 n= 57  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=544
+  seed=4008 n= 28  L0=0.975 real=0.000 scram=0.025  (real-scram)=-0.025  term_b=418
+  seed=4009 n= 24  L0=0.024 real=0.976 scram=0.000  (real-scram)=+0.976  term_b=1261
+  >>> actionable: mean(real-scram) = +0.196 ± 0.397  (SEM 0.125, n=10)
+
+wrote results/eco_c1_Kmlp.csv

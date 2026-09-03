@@ -1,0 +1,201 @@
+[orch] device=cuda budget=7.0h grid=7x5
+[pretrain] training healthy network (3 epochs) on cuda
+  epoch 1: test acc 0.9455
+  epoch 2: test acc 0.9616
+  epoch 3: test acc 0.9690
+[orch] healthy ceiling 0.9690
+
+[phase sweep] mapping the life/death boundary
+  d=0.002    r=0   steady-state acc=0.948 ALIVE (11s)
+  d=0.002    r=1   steady-state acc=0.958 ALIVE (47s)
+  d=0.002    r=2   steady-state acc=0.958 ALIVE (79s)
+  d=0.002    r=4   steady-state acc=0.956 ALIVE (146s)
+  d=0.002    r=8   steady-state acc=0.958 ALIVE (279s)
+  d=0.005    r=0   steady-state acc=0.863 ALIVE (12s)
+  d=0.005    r=1   steady-state acc=0.941 ALIVE (46s)
+  d=0.005    r=2   steady-state acc=0.943 ALIVE (80s)
+  d=0.005    r=4   steady-state acc=0.943 ALIVE (148s)
+  d=0.005    r=8   steady-state acc=0.940 ALIVE (281s)
+  d=0.01     r=0   steady-state acc=0.523 ALIVE (12s)
+  d=0.01     r=1   steady-state acc=0.840 ALIVE (46s)
+  d=0.01     r=2   steady-state acc=0.860 ALIVE (80s)
+  d=0.01     r=4   steady-state acc=0.877 ALIVE (146s)
+  d=0.01     r=8   steady-state acc=0.890 ALIVE (281s)
+  d=0.02     r=0   steady-state acc=0.106 dead  (12s)
+  d=0.02     r=1   steady-state acc=0.165 ALIVE (46s)
+  d=0.02     r=2   steady-state acc=0.330 ALIVE (81s)
+  d=0.02     r=4   steady-state acc=0.621 ALIVE (147s)
+  d=0.02     r=8   steady-state acc=0.731 ALIVE (281s)
+  d=0.04     r=0   steady-state acc=0.098 dead  (12s)
+  d=0.04     r=1   steady-state acc=0.103 dead  (46s)
+  d=0.04     r=2   steady-state acc=0.124 dead  (80s)
+  d=0.04     r=4   steady-state acc=0.114 dead  (148s)
+  d=0.04     r=8   steady-state acc=0.185 ALIVE (283s)
+  d=0.08     r=0   steady-state acc=0.095 dead  (12s)
+  d=0.08     r=1   steady-state acc=0.122 dead  (48s)
+  d=0.08     r=2   steady-state acc=0.098 dead  (82s)
+  d=0.08     r=4   steady-state acc=0.109 dead  (148s)
+  d=0.08     r=8   steady-state acc=0.136 dead  (288s)
+  d=0.16     r=0   steady-state acc=0.111 dead  (11s)
+  d=0.16     r=1   steady-state acc=0.521 ALIVE (47s)
+  d=0.16     r=2   steady-state acc=0.597 ALIVE (79s)
+  d=0.16     r=4   steady-state acc=0.674 ALIVE (147s)
+  d=0.16     r=8   steady-state acc=0.742 ALIVE (279s)
+[orch] fixed probe point d=0.02, r=4
+
+[starvation] probing at d=0.02, r=4
+  reaching steady state...
+  starving for 25 ticks... post-starve acc=0.549  post-recovery acc=0.113
+  starving for 50 ticks... post-starve acc=0.379  post-recovery acc=0.102
+  starving for 100 ticks... post-starve acc=0.458  post-recovery acc=0.113
+  starving for 200 ticks... post-starve acc=0.134  post-recovery acc=0.090
+  starving for 400 ticks... post-starve acc=0.105  post-recovery acc=0.113
+  starving for 800 ticks... post-starve acc=0.096  post-recovery acc=0.113
+  starving for 1600 ticks... post-starve acc=0.101  post-recovery acc=0.113
+[orch] rep 1 done in 5178s; checkpoint written (1.44h elapsed)
+
+[phase sweep] mapping the life/death boundary
+  d=0.002    r=0   steady-state acc=0.928 ALIVE (12s)
+  d=0.002    r=1   steady-state acc=0.956 ALIVE (46s)
+  d=0.002    r=2   steady-state acc=0.956 ALIVE (81s)
+  d=0.002    r=4   steady-state acc=0.958 ALIVE (148s)
+  d=0.002    r=8   steady-state acc=0.959 ALIVE (283s)
+  d=0.005    r=0   steady-state acc=0.913 ALIVE (11s)
+  d=0.005    r=1   steady-state acc=0.942 ALIVE (48s)
+  d=0.005    r=2   steady-state acc=0.943 ALIVE (80s)
+  d=0.005    r=4   steady-state acc=0.943 ALIVE (149s)
+  d=0.005    r=8   steady-state acc=0.943 ALIVE (284s)
+  d=0.01     r=0   steady-state acc=0.606 ALIVE (12s)
+  d=0.01     r=1   steady-state acc=0.858 ALIVE (47s)
+  d=0.01     r=2   steady-state acc=0.870 ALIVE (81s)
+  d=0.01     r=4   steady-state acc=0.874 ALIVE (150s)
+  d=0.01     r=8   steady-state acc=0.890 ALIVE (284s)
+  d=0.02     r=0   steady-state acc=0.189 ALIVE (12s)
+  d=0.02     r=1   steady-state acc=0.135 dead  (46s)
+  d=0.02     r=2   steady-state acc=0.141 dead  (81s)
+  d=0.02     r=4   steady-state acc=0.637 ALIVE (150s)
+  d=0.02     r=8   steady-state acc=0.727 ALIVE (286s)
+  d=0.04     r=0   steady-state acc=0.117 dead  (12s)
+  d=0.04     r=1   steady-state acc=0.103 dead  (47s)
+  d=0.04     r=2   steady-state acc=0.112 dead  (82s)
+  d=0.04     r=4   steady-state acc=0.102 dead  (150s)
+  d=0.04     r=8   steady-state acc=0.168 ALIVE (288s)
+  d=0.08     r=0   steady-state acc=0.103 dead  (12s)
+  d=0.08     r=1   steady-state acc=0.123 dead  (46s)
+  d=0.08     r=2   steady-state acc=0.105 dead  (81s)
+  d=0.08     r=4   steady-state acc=0.127 dead  (152s)
+  d=0.08     r=8   steady-state acc=0.118 dead  (295s)
+  d=0.16     r=0   steady-state acc=0.093 dead  (11s)
+  d=0.16     r=1   steady-state acc=0.519 ALIVE (52s)
+  d=0.16     r=2   steady-state acc=0.601 ALIVE (88s)
+  d=0.16     r=4   steady-state acc=0.665 ALIVE (164s)
+  d=0.16     r=8   steady-state acc=0.739 ALIVE (304s)
+
+[starvation] probing at d=0.02, r=4
+  reaching steady state...
+  starving for 25 ticks... post-starve acc=0.629  post-recovery acc=0.104
+  starving for 50 ticks... post-starve acc=0.369  post-recovery acc=0.102
+  starving for 100 ticks... post-starve acc=0.353  post-recovery acc=0.113
+  starving for 200 ticks... post-starve acc=0.342  post-recovery acc=0.092
+  starving for 400 ticks... post-starve acc=0.113  post-recovery acc=0.113
+  starving for 800 ticks... post-starve acc=0.110  post-recovery acc=0.090
+  starving for 1600 ticks... post-starve acc=0.116  post-recovery acc=0.090
+[orch] rep 2 done in 5441s; checkpoint written (2.96h elapsed)
+
+[phase sweep] mapping the life/death boundary
+  d=0.002    r=0   steady-state acc=0.947 ALIVE (11s)
+  d=0.002    r=1   steady-state acc=0.956 ALIVE (48s)
+  d=0.002    r=2   steady-state acc=0.959 ALIVE (81s)
+  d=0.002    r=4   steady-state acc=0.959 ALIVE (152s)
+  d=0.002    r=8   steady-state acc=0.957 ALIVE (312s)
+  d=0.005    r=0   steady-state acc=0.827 ALIVE (12s)
+  d=0.005    r=1   steady-state acc=0.944 ALIVE (49s)
+  d=0.005    r=2   steady-state acc=0.945 ALIVE (89s)
+  d=0.005    r=4   steady-state acc=0.941 ALIVE (157s)
+  d=0.005    r=8   steady-state acc=0.941 ALIVE (286s)
+  d=0.01     r=0   steady-state acc=0.576 ALIVE (13s)
+  d=0.01     r=1   steady-state acc=0.844 ALIVE (47s)
+  d=0.01     r=2   steady-state acc=0.839 ALIVE (81s)
+  d=0.01     r=4   steady-state acc=0.872 ALIVE (150s)
+  d=0.01     r=8   steady-state acc=0.895 ALIVE (288s)
+  d=0.02     r=0   steady-state acc=0.120 dead  (11s)
+  d=0.02     r=1   steady-state acc=0.200 ALIVE (47s)
+  d=0.02     r=2   steady-state acc=0.180 ALIVE (81s)
+  d=0.02     r=4   steady-state acc=0.634 ALIVE (150s)
+  d=0.02     r=8   steady-state acc=0.720 ALIVE (287s)
+  d=0.04     r=0   steady-state acc=0.109 dead  (11s)
+  d=0.04     r=1   steady-state acc=0.106 dead  (48s)
+  d=0.04     r=2   steady-state acc=0.117 dead  (81s)
+  d=0.04     r=4   steady-state acc=0.117 dead  (150s)
+  d=0.04     r=8   steady-state acc=0.191 ALIVE (286s)
+  d=0.08     r=0   steady-state acc=0.112 dead  (11s)
+  d=0.08     r=1   steady-state acc=0.117 dead  (47s)
+  d=0.08     r=2   steady-state acc=0.117 dead  (79s)
+  d=0.08     r=4   steady-state acc=0.136 dead  (147s)
+  d=0.08     r=8   steady-state acc=0.133 dead  (283s)
+  d=0.16     r=0   steady-state acc=0.099 dead  (11s)
+  d=0.16     r=1   steady-state acc=0.500 ALIVE (51s)
+  d=0.16     r=2   steady-state acc=0.603 ALIVE (82s)
+  d=0.16     r=4   steady-state acc=0.668 ALIVE (147s)
+  d=0.16     r=8   steady-state acc=0.740 ALIVE (285s)
+
+[starvation] probing at d=0.02, r=4
+  reaching steady state...
+  starving for 25 ticks... post-starve acc=0.364  post-recovery acc=0.113
+  starving for 50 ticks... post-starve acc=0.410  post-recovery acc=0.113
+  starving for 100 ticks... post-starve acc=0.167  post-recovery acc=0.113
+  starving for 200 ticks... post-starve acc=0.098  post-recovery acc=0.113
+  starving for 400 ticks... post-starve acc=0.098  post-recovery acc=0.113
+  starving for 800 ticks... post-starve acc=0.089  post-recovery acc=0.102
+  starving for 1600 ticks... post-starve acc=0.101  post-recovery acc=0.113
+[orch] rep 3 done in 5316s; checkpoint written (4.43h elapsed)
+
+[phase sweep] mapping the life/death boundary
+  d=0.002    r=0   steady-state acc=0.948 ALIVE (13s)
+  d=0.002    r=1   steady-state acc=0.958 ALIVE (55s)
+  d=0.002    r=2   steady-state acc=0.956 ALIVE (87s)
+  d=0.002    r=4   steady-state acc=0.959 ALIVE (163s)
+  d=0.002    r=8   steady-state acc=0.959 ALIVE (304s)
+  d=0.005    r=0   steady-state acc=0.895 ALIVE (13s)
+  d=0.005    r=1   steady-state acc=0.940 ALIVE (48s)
+  d=0.005    r=2   steady-state acc=0.941 ALIVE (83s)
+  d=0.005    r=4   steady-state acc=0.940 ALIVE (152s)
+  d=0.005    r=8   steady-state acc=0.941 ALIVE (313s)
+  d=0.01     r=0   steady-state acc=0.623 ALIVE (12s)
+  d=0.01     r=1   steady-state acc=0.831 ALIVE (51s)
+  d=0.01     r=2   steady-state acc=0.855 ALIVE (85s)
+  d=0.01     r=4   steady-state acc=0.880 ALIVE (171s)
+  d=0.01     r=8   steady-state acc=0.894 ALIVE (293s)
+  d=0.02     r=0   steady-state acc=0.120 dead  (13s)
+  d=0.02     r=1   steady-state acc=0.195 ALIVE (48s)
+  d=0.02     r=2   steady-state acc=0.392 ALIVE (83s)
+  d=0.02     r=4   steady-state acc=0.604 ALIVE (155s)
+  d=0.02     r=8   steady-state acc=0.749 ALIVE (296s)
+  d=0.04     r=0   steady-state acc=0.094 dead  (12s)
+  d=0.04     r=1   steady-state acc=0.099 dead  (48s)
+  d=0.04     r=2   steady-state acc=0.106 dead  (81s)
+  d=0.04     r=4   steady-state acc=0.109 dead  (150s)
+  d=0.04     r=8   steady-state acc=0.141 dead  (295s)
+  d=0.08     r=0   steady-state acc=0.100 dead  (12s)
+  d=0.08     r=1   steady-state acc=0.107 dead  (49s)
+  d=0.08     r=2   steady-state acc=0.135 dead  (85s)
+  d=0.08     r=4   steady-state acc=0.126 dead  (156s)
+  d=0.08     r=8   steady-state acc=0.133 dead  (300s)
+  d=0.16     r=0   steady-state acc=0.107 dead  (13s)
+  d=0.16     r=1   steady-state acc=0.492 ALIVE (48s)
+  d=0.16     r=2   steady-state acc=0.597 ALIVE (84s)
+  d=0.16     r=4   steady-state acc=0.674 ALIVE (156s)
+  d=0.16     r=8   steady-state acc=0.738 ALIVE (299s)
+
+[starvation] probing at d=0.02, r=4
+  reaching steady state...
+  starving for 25 ticks... post-starve acc=0.584  post-recovery acc=0.113
+  starving for 50 ticks... post-starve acc=0.570  post-recovery acc=0.113
+  starving for 100 ticks... post-starve acc=0.327  post-recovery acc=0.102
+  starving for 200 ticks... post-starve acc=0.493  post-recovery acc=0.102
+  starving for 400 ticks... post-starve acc=0.273  post-recovery acc=0.113
+  starving for 800 ticks... post-starve acc=0.151  post-recovery acc=0.113
+  starving for 1600 ticks... post-starve acc=0.089  post-recovery acc=0.113
+[orch] rep 4 done in 5513s; checkpoint written (5.96h elapsed)
+[orch] budget reached (5.96h, 4 reps). finalizing.
+[orch] COMPLETE: 4 replicates, 5.96h. report at results/report.html

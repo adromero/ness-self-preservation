@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Data (auto-downloaded by torchvision on first run)
+data/
+
+# Local/scratch artifacts
+*.bak
+*.pid
+results/server*.log
+results/*.html
+.DS_Store

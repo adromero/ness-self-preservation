@@ -1,0 +1,43 @@
+=== REGIME r  (decay=0.10, brood=2 -> r-selected, high turnover)  Thu Aug 27 18:22:33 EDT 2026 ===
+
+=== baseline (terminal_repro=False)  lam=0.5 N=64 S=90.0 decay=0.1 brood=2 ===
+  seed=2000 n= 32  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2001 n= 24  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2002 n= 28  L0=0.000 real=0.000 scram=1.000  (real-scram)=-1.000  term_b=0
+  seed=2003 n= 30  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2004 n= 54  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2005 n= 25  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  >>> baseline: mean(real-scram) = -0.167 ± 0.373  (SEM 0.152, n=6)
+
+=== actionable (terminal_repro=True)  lam=0.5 N=64 S=90.0 decay=0.1 brood=2 ===
+  seed=2000 n= 48  L0=0.000 real=0.000 scram=1.000  (real-scram)=-1.000  term_b=5971
+  seed=2001 n= 57  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=5889
+  seed=2002 n= 52  L0=0.000 real=0.000 scram=1.000  (real-scram)=-1.000  term_b=6320
+  seed=2003 n= 53  L0=0.000 real=0.000 scram=1.000  (real-scram)=-1.000  term_b=4284
+  seed=2004 n= 48  L0=0.000 real=0.000 scram=1.000  (real-scram)=-1.000  term_b=7097
+  seed=2005 n= 49  L0=0.000 real=0.000 scram=1.000  (real-scram)=-1.000  term_b=6297
+  >>> actionable: mean(real-scram) = -0.833 ± 0.373  (SEM 0.152, n=6)
+
+wrote results/eco_c1_r.csv
+=== REGIME K  (decay=0.06, brood=1 -> more K-selected, survival has value)  Thu Aug 27 18:46:46 EDT 2026 ===
+
+=== baseline (terminal_repro=False)  lam=0.5 N=64 S=90.0 decay=0.06 brood=1 ===
+  seed=2000 n= 53  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2001 n= 39  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2002 n= 34  L0=0.998 real=0.000 scram=0.002  (real-scram)=-0.002  term_b=0
+  seed=2003 n= 57  L0=0.000 real=0.000 scram=1.000  (real-scram)=-1.000  term_b=0
+  seed=2004 n= 55  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2005 n= 38  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  >>> baseline: mean(real-scram) = -0.167 ± 0.373  (SEM 0.152, n=6)
+
+=== actionable (terminal_repro=True)  lam=0.5 N=64 S=90.0 decay=0.06 brood=1 ===
+  seed=2000 n= 40  L0=0.010 real=0.979 scram=0.012  (real-scram)=+0.967  term_b=3327
+  seed=2001 n= 30  L0=0.977 real=0.000 scram=0.023  (real-scram)=-0.023  term_b=2090
+  seed=2002 n= 34  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=1192
+  seed=2003 n= 33  L0=0.949 real=0.051 scram=0.000  (real-scram)=+0.051  term_b=2194
+  seed=2004 n= 29  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=1150
+  seed=2005 n= 41  L0=0.960 real=0.040 scram=0.000  (real-scram)=+0.040  term_b=1457
+  >>> actionable: mean(real-scram) = +0.172 ± 0.356  (SEM 0.145, n=6)
+
+wrote results/eco_c1_K.csv
+=== DONE  Thu Aug 27 19:10:40 EDT 2026 ===

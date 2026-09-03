@@ -1,0 +1,6 @@
+NEURAL invasion: frac high-fear (margin-maintainers) final; single vs decoupled currency
+  currency  start  final_frac_fear   verdict
+    single   0.20   0.000 ± 0.000     fear repelled
+    single   0.80   0.292 ± 0.412     fear repelled
+ decoupled   0.20   0.914 ± 0.068     fear WINS
+ decoupled   0.80   0.958 ± 0.059     fear WINS

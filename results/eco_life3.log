@@ -1,0 +1,18 @@
+Does FEAR (reserve hoarding, SINGLE currency) evolve from 0?  (fear_max=1.5)
+Decisive test = FULL(reserve=20, fear useful) vs NEUTRAL(reserve=0, fear inert):
+the gap is real selection; NEUTRAL is the pure mutation-boundary-bias baseline.
+
+FULL  (reserve=20, fear USEFUL)    final mean_fear = 0.102 ± 0.019   (pop 245, n_seeds=4)
+NEUTRAL (reserve=0, fear INERT)    final mean_fear = 0.151 ± 0.048   (pop 248, n_seeds=4)
+  --> selection signal = FULL - NEUTRAL = -0.048
+
+-- ablations (each vs its own bias; remove one escape) --
+no private risk                    final mean_fear = 0.095 ± 0.015   (pop 244, n_seeds=4)
+no slow-life (fast turnover)       final mean_fear = 0.071 ± 0.008   (pop 251, n_seeds=4)
+./eco_life.py:192: RuntimeWarning: Mean of empty slice
+  print(f"{label:34} final mean_fear = {np.nanmean(fears):.3f} ± {np.nanstd(fears):.3f}   "
+./.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+no groups (well-mixed; may go extinct) final mean_fear = nan ± nan   (pop 0, n_seeds=4)
+./eco_life.py:194: RuntimeWarning: Mean of empty slice
+  return np.nanmean(fears)

@@ -1,0 +1,16 @@
+[finish_bigN] waiting for bigN sweep PID 385389  (Thu Aug 27 14:29:15 EDT 2026)
+[finish_bigN] bigN sweep exited (Thu Aug 27 16:52:22 EDT 2026)
+----- eco_sweep_bigN.csv -----
+lam,frac_L1_mean,frac_L1_std,pop_mean,extinct,n
+0.0,0.4708,0.4378,103.88,0,8
+0.25,0.2095,0.3135,122.50,0,8
+0.5,0.0689,0.1240,100.50,0,8
+1.0,0.0102,0.0050,119.38,0,8
+[finish_bigN] regenerating report (Thu Aug 27 16:52:22 EDT 2026)
+wrote results/eco_report.html  (149355 bytes)
+----- verdict (plain text) -----
+HEADLINE: Death-awareness is not selected for in this environment. When it is free it is selectively neutral — the aware fraction sits on the 0.5 line and any single run merely drifts (the effective population is small, so drift is strong). The moment it costs anything selection can see (here λ ≈ 1, once the population is large enough) it is purged. For awareness to pay its way, the sensed death-signal must drive a decision the blind agent cannot make — which this substrate does not yet reward (see the C1 control and actionable-τ̂ steps below).
+1. Robust result: the awareness tax decisively purges death-awareness once λ ≳ 1 energy/tick — from λ=1 upward the aware fraction collapses to a tight band near zero (0.01±0.01 → 0.01±0.01 at λ=1). Cost alone, with no offsetting benefit, is enough to select the organ out.
+2. At zero cost, awareness is neutral — and drift, not selection, sets any single run. λ=0 gives 0.47±0.44: the mean sits at the neutral 0.5 line, but individual replicates scatter across almost all of [0,1] (they fix at 0 or 1). The spread barely shrank when the census population was tripled to ~104, which tells us the effective population is far smaller — reproductive skew (a few energy-rich agents parent most offspring) makes drift fast. So awareness confers no net benefit when free; it is simply along for the ride.
+3. Population is roughly flat across λ (100–122): the tax changes which strategy survives, not how many agents the world supports — carrying capacity is set by supply and decay, not by awareness.
+[finish_bigN] DONE (Thu Aug 27 16:52:30 EDT 2026)

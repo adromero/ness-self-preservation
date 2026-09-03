@@ -1,0 +1,8 @@
+two-resource decoupled: when does high-fear (start 0.9) survive / (start 0.1) invade?
+ upkeep famine_prob   0.9->hi   0.1->hi   reading
+  0.000       0.004   0.937     0.175    fear STABLE
+  0.000       0.020   1.000     1.000    fear FIXES
+  0.000       0.050   1.000     1.000    fear FIXES
+  0.005       0.004   0.000     0.000    repelled
+  0.005       0.020   1.000     0.382    fear STABLE
+  0.005       0.050   1.000     1.000    fear FIXES

@@ -1,0 +1,11 @@
+device=cuda
+=== NESS-Ecology validation gate ===
+[1] conservation: PASS (120 ticks, no violation)  final pop=25
+[2] no-negative energy / pool: PASS (asserted every tick)
+[3] order-independence: PASS  (total 249.6 vs 249.6; per-agent match=True)
+[4] population stability: PASS  tail pop mean=23.8 min=19 max=31 (cap 64)
+[5] heritability (parent-offspring health r): PASS  r=1.00 (n=169)
+[6] predation live & viable: PASS  (ON n=24 attacks=1136 stolen=475.2; OFF n=53)
+    reported lineage diversity (tag eff-#): ON=13.66  OFF=13.11  (empirical, not a pass/fail gate)
+
+VALIDATION GATE: ALL CORE CHECKS PASS

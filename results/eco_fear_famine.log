@@ -1,0 +1,8 @@
+FEAR (fat reserve) vs FEARLESS across famine GRAIN  (frac_fear>0.5 => fear favored)
+        regime     frac_fear (mean±SD)     n̄  favored?
+ calm                0.499 ± 0.001       ~tie
+fine (freq)          0.495 ± 0.007       ~tie
+moderate             0.302 ± 0.054       fearless
+coarse (rare)        0.178 ± 0.197       fearless
+
+wrote results/eco_fear_famine.csv

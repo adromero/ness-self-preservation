@@ -1,0 +1,21 @@
+
+=== actionable (terminal_repro=True)  lam=0.5 N=64 S=90.0 decay=0.06 brood=1 ===
+  seed=5000 n= 23  L0=0.961 real=0.000 scram=0.039  (real-scram)=-0.039  term_b=839
+  seed=5001 n= 50  L0=0.000 real=0.000 scram=1.000  (real-scram)=-1.000  term_b=1279
+  seed=5002 n= 32  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=851
+  seed=5003 n= 27  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=896
+  seed=5004 n= 20  L0=0.958 real=0.042 scram=0.000  (real-scram)=+0.042  term_b=471
+  seed=5005 n= 32  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=1165
+  seed=5006 n= 32  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=708
+  seed=5007 n= 61  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=601
+  seed=5008 n= 49  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=1348
+  seed=5009 n= 31  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=862
+  seed=5010 n= 27  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=710
+  seed=5011 n= 25  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=419
+  seed=5012 n= 29  L0=0.980 real=0.020 scram=0.000  (real-scram)=+0.020  term_b=708
+  seed=5013 n= 22  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=1236
+  seed=5014 n=  3  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=803
+  seed=5015 n= 24  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=449
+  >>> actionable: mean(real-scram) = -0.061 ± 0.243  (SEM 0.061, n=16)
+
+wrote results/eco_c1_Kmlp2.csv

@@ -1,0 +1,9 @@
+INVASION / BISTABILITY  (FULL ecology; lean fear=0.1 vs high fear=1.2, mutation OFF)
+valley-lock = bistable: high-fear repelled when rare (final~0) AND fixes when common (final~1)
+start_frac_hi    final_frac_hi (mean±SD)   verdict
+         0.05     0.000 ± 0.000        high repelled
+         0.15     0.005 ± 0.010        high repelled
+         0.30     0.017 ± 0.019        high repelled
+         0.50     0.106 ± 0.105        high repelled
+         0.70     0.087 ± 0.059        high repelled
+         0.90     0.328 ± 0.049        mixed/separatrix

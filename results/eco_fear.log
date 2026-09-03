@@ -1,0 +1,14 @@
+=== MECHANISM CHECK: fearless-only vs fearful-only ===
+cond      catastrophe | n_final margin  births  deaths(H/E)
+fear=0.0 calm     |   64     1.19       0   0/0
+fear=0.6 calm     |   64     1.19       0   0/0
+fear=0.0 catastro |   64     0.90       0   0/0
+fear=0.6 catastro |   64     0.91       0   0/0
+
+=== FEAR COMPETITION (fearless vs fearful=0.6) across catastrophe severity ===
+(prob=0.03/tick; mult=1 is calm/no-catastrophe. frac_fear>0.5 => fear favored)
+cat_mult     frac_fear (mean±SD)     n̄  favored?
+     1.0       0.503 ± 0.006        64.0  ~tie
+     4.0       0.502 ± 0.006        63.8  ~tie
+     8.0       0.502 ± 0.007        63.8  ~tie
+    12.0       0.502 ± 0.007        63.0  ~tie

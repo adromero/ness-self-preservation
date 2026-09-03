@@ -1,0 +1,6 @@
+NESS-PORT mechanism check (real decaying nets; decay-shock catastrophe)
+                      cond | n  margin births  H/E-deaths
+        fear=0.0 single    |  0   0.00   268   254/0
+        fear=1.0 single    |  0   0.00   114   105/8
+        fear=0.0 decoupled |  0   0.00   268   254/0
+        fear=1.0 decoupled |  0   0.00   149   129/0

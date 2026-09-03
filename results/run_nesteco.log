@@ -1,0 +1,51 @@
+===== FIXATION: seasonal compete (MLP brain) Sun Aug 30 12:43:33 EDT 2026 =====
+
+=== baseline (terminal_repro=False)  lam=0.5 N=64 S=90.0 decay=0.05 brood=2 ===
+  seed=2000 n=  0  L0=0.130 real=0.745 scram=0.000  (real-scram)=+0.745  term_b=0
+  seed=2001 n=  0  L0=0.875 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2002 n=  0  L0=0.361 real=0.000 scram=0.528  (real-scram)=-0.528  term_b=0
+  seed=2003 n=  0  L0=0.592 real=0.000 scram=0.297  (real-scram)=-0.297  term_b=0
+  seed=2004 n=  0  L0=0.850 real=0.039 scram=0.000  (real-scram)=+0.039  term_b=0
+  seed=2005 n=  0  L0=0.872 real=0.003 scram=0.000  (real-scram)=+0.003  term_b=0
+  seed=2006 n=  0  L0=0.225 real=0.650 scram=0.000  (real-scram)=+0.650  term_b=0
+  seed=2007 n=  0  L0=0.787 real=0.052 scram=0.050  (real-scram)=+0.002  term_b=0
+  seed=2008 n=  0  L0=0.802 real=0.009 scram=0.078  (real-scram)=-0.069  term_b=0
+  seed=2009 n=  0  L0=0.872 real=0.000 scram=0.017  (real-scram)=-0.017  term_b=0
+  seed=2010 n= 45  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2011 n=  0  L0=0.846 real=0.017 scram=0.012  (real-scram)=+0.004  term_b=0
+  >>> baseline: mean(real-scram) = +0.044 ± 0.333  (SEM 0.096, n=12)
+
+wrote results/eco_fix_seasonal.csv
+===== FIXATION: stationary control (MLP brain) Sun Aug 30 12:57:24 EDT 2026 =====
+
+=== baseline (terminal_repro=False)  lam=0.5 N=64 S=90.0 decay=0.05 brood=2 ===
+  seed=2000 n=  0  L0=0.885 real=0.038 scram=0.000  (real-scram)=+0.038  term_b=0
+  seed=2001 n= 38  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2002 n=  0  L0=0.896 real=0.004 scram=0.000  (real-scram)=+0.004  term_b=0
+  seed=2003 n=  0  L0=0.917 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2004 n= 41  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2005 n=  0  L0=0.900 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2006 n=  0  L0=0.909 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2007 n=  0  L0=0.902 real=0.000 scram=0.021  (real-scram)=-0.021  term_b=0
+  seed=2008 n= 32  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2009 n=  0  L0=0.917 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2010 n= 48  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2011 n=  0  L0=0.923 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  >>> baseline: mean(real-scram) = +0.002 ± 0.013  (SEM 0.004, n=12)
+
+wrote results/eco_fix_stationary.csv
+===== INVASION: seasonal, real-margin vs scram-margin Sun Aug 30 13:18:27 EDT 2026 =====
+INVASION ASSAY — s(real vs scram) per generation | actionable K-regime decay=0.05 lam=0.5 brood=1 window=200 reps=20
+
+brain   condition           mean_s     SEM      t  n
+MLP-8   test(real senses)   +0.1697  0.3232  +0.53  20
+MLP-8   null(both scram)   +0.1819  0.2670  +0.68  20
+linear  test(real senses)   -0.0974  0.3167  -0.31  20
+linear  null(both scram)   +0.1270  0.2303  +0.55  20
+
+Value of information  s_test - s_null  (per generation):
+  MLP-8  : Δs = -0.0122  (SE 0.4192, t≈-0.03, n_test=20 n_null=20)
+  linear : Δs = -0.2244  (SE 0.3916, t≈-0.57, n_test=20 n_null=20)
+
+wrote results/eco_invasion_seasonal.csv
+===== DONE Sun Aug 30 14:10:08 EDT 2026 =====

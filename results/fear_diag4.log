@@ -1,0 +1,6 @@
+FAMINE / FAT-RESERVE DIAGNOSTIC (fear=0 lean vs fear=0.6 fat)
+            cond | n  births  mean_E  deaths(H/E)   <- famine kills via Energy death
+fear=0.0      calm |  93   675   123.2   0/0
+fear=0.6      calm |  94   662   667.1   0/0
+fear=0.0    famine |  93   674    73.6   0/1
+fear=0.6    famine |  94   652   600.7   0/0

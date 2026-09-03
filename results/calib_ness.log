@@ -1,0 +1,9 @@
+decay a_death amp   S | n_fin n_min  Hd   Ed  acc | m̄(hd) m̄(surv) | SUSTAINED?
+ 0.04  0.65  0.40 110 |   37   22 1038   16 0.665 |  0.04   0.02 | YES +Hcollapse
+ 0.04  0.65  0.40 140 |   63   38 2641    7 0.689 |  0.03   0.02 | YES +Hcollapse
+ 0.04  0.72  0.40 110 |   42   10 2430   16 0.739 |  0.04   0.02 | YES +Hcollapse
+ 0.04  0.72  0.40 140 |   44   30 2287    6 0.746 |  0.05   0.03 | YES +Hcollapse
+ 0.06  0.65  0.40 110 |    0    0  314   15 nan |  0.10    nan | extinct/marginal +Hcollapse
+ 0.06  0.65  0.40 140 |   54    8 3137    6 0.671 |  0.04   0.02 | YES +Hcollapse
+ 0.06  0.72  0.40 110 |    0    0 4525   15 nan |  0.05    nan | extinct/marginal +Hcollapse
+ 0.06  0.72  0.40 140 |   45   14 4138    6 0.736 |  0.04   0.02 | YES +Hcollapse

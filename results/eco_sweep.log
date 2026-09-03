@@ -1,0 +1,38 @@
+device=cuda
+  lam=0      rep=0 tail frac_L1=0.029 pop=22 deaths=1266 births=1224
+  lam=0      rep=1 tail frac_L1=0.029 pop=40 deaths=1218 births=1194
+  lam=0      rep=2 tail frac_L1=0.959 pop=26 deaths=889 births=851
+  lam=0      rep=3 tail frac_L1=0.028 pop=43 deaths=1894 births=1873
+  lam=0      rep=4 tail frac_L1=0.011 pop=33 deaths=911 births=880
+  lam=0      rep=5 tail frac_L1=0.033 pop=30 deaths=834 births=800
+lam=0       frac_L1=0.181 +/- 0.348  pop~32.3  extinct=0/6  (n=6)
+  lam=0.25   rep=0 tail frac_L1=0.014 pop=27 deaths=900 births=863
+  lam=0.25   rep=1 tail frac_L1=0.976 pop=22 deaths=1090 births=1048
+  lam=0.25   rep=2 tail frac_L1=0.820 pop=28 deaths=821 births=785
+  lam=0.25   rep=3 tail frac_L1=0.958 pop=27 deaths=965 births=928
+  lam=0.25   rep=4 tail frac_L1=0.050 pop=46 deaths=1663 births=1645
+  lam=0.25   rep=5 tail frac_L1=0.025 pop=27 deaths=802 births=765
+lam=0.25    frac_L1=0.474 +/- 0.447  pop~29.5  extinct=0/6  (n=6)
+  lam=0.5    rep=0 tail frac_L1=0.048 pop=19 deaths=1310 births=1265
+  lam=0.5    rep=1 tail frac_L1=0.019 pop=33 deaths=1087 births=1056
+  lam=0.5    rep=2 tail frac_L1=0.085 pop=29 deaths=1242 births=1207
+  lam=0.5    rep=3 tail frac_L1=0.040 pop=27 deaths=1214 births=1177
+  lam=0.5    rep=4 tail frac_L1=0.015 pop=52 deaths=1624 births=1612
+  lam=0.5    rep=5 tail frac_L1=0.000 pop=28 deaths=970 births=934
+lam=0.5     frac_L1=0.034 +/- 0.028  pop~31.3  extinct=0/6  (n=6)
+  lam=1      rep=0 tail frac_L1=0.006 pop=45 deaths=1611 births=1592
+  lam=1      rep=1 tail frac_L1=0.066 pop=0 deaths=426 births=362
+  lam=1      rep=2 tail frac_L1=0.006 pop=31 deaths=793 births=760
+  lam=1      rep=3 tail frac_L1=0.020 pop=36 deaths=980 births=952
+  lam=1      rep=4 tail frac_L1=0.013 pop=56 deaths=1582 births=1574
+  lam=1      rep=5 tail frac_L1=0.009 pop=24 deaths=747 births=707
+lam=1       frac_L1=0.020 +/- 0.021  pop~32.0  extinct=1/6  (n=6)
+  lam=2      rep=0 tail frac_L1=0.013 pop=40 deaths=1399 births=1375
+  lam=2      rep=1 tail frac_L1=0.013 pop=32 deaths=887 births=855
+  lam=2      rep=2 tail frac_L1=0.000 pop=25 deaths=630 births=591
+  lam=2      rep=3 tail frac_L1=0.010 pop=61 deaths=1772 births=1769
+  lam=2      rep=4 tail frac_L1=0.003 pop=29 deaths=758 births=723
+  lam=2      rep=5 tail frac_L1=0.024 pop=26 deaths=873 births=835
+lam=2       frac_L1=0.010 +/- 0.008  pop~35.5  extinct=0/6  (n=6)
+
+wrote results/eco_sweep.csv

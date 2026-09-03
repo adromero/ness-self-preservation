@@ -1,0 +1,10 @@
+# Core
+numpy
+matplotlib
+
+# Neural substrate (eco_mvp.py, ness_monitor.py, ness_experiment.py)
+torch
+torchvision   # only for ness_experiment.py (MNIST); the ecology/monitor demos don't need it
+
+# Optional: only used if you regenerate the HTML transcript locally
+# markdown

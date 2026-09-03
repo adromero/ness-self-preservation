@@ -1,0 +1,32 @@
+
+=== baseline (terminal_repro=False)  lam=0.5 N=64 S=90.0 decay=0.06 brood=1 ===
+  seed=3000 n= 20  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3001 n= 44  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3002 n= 54  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3003 n= 60  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3004 n= 32  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3005 n= 46  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3006 n= 27  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3007 n= 38  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3008 n= 22  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3009 n= 28  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3010 n= 51  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=3011 n= 27  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  >>> baseline: mean(real-scram) = +0.000 ± 0.000  (SEM 0.000, n=12)
+
+=== actionable (terminal_repro=True)  lam=0.5 N=64 S=90.0 decay=0.06 brood=1 ===
+  seed=3000 n= 25  L0=0.832 real=0.082 scram=0.085  (real-scram)=-0.003  term_b=1461
+  seed=3001 n= 44  L0=0.000 real=0.000 scram=1.000  (real-scram)=-1.000  term_b=3726
+  seed=3002 n= 52  L0=0.016 real=0.025 scram=0.959  (real-scram)=-0.935  term_b=2793
+  seed=3003 n= 25  L0=0.023 real=0.664 scram=0.313  (real-scram)=+0.351  term_b=700
+  seed=3004 n= 30  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=1152
+  seed=3005 n= 28  L0=0.888 real=0.039 scram=0.073  (real-scram)=-0.034  term_b=2675
+  seed=3006 n= 50  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=1078
+  seed=3007 n= 35  L0=0.415 real=0.585 scram=0.000  (real-scram)=+0.585  term_b=1185
+  seed=3008 n= 24  L0=0.924 real=0.038 scram=0.038  (real-scram)=+0.000  term_b=1746
+  seed=3009 n= 33  L0=0.006 real=0.994 scram=0.000  (real-scram)=+0.994  term_b=1589
+  seed=3010 n= 30  L0=0.073 real=0.927 scram=0.000  (real-scram)=+0.927  term_b=956
+  seed=3011 n= 28  L0=0.000 real=0.000 scram=1.000  (real-scram)=-1.000  term_b=1099
+  >>> actionable: mean(real-scram) = -0.010 ± 0.657  (SEM 0.190, n=12)
+
+wrote results/eco_c1_K2.csv

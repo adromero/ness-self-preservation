@@ -1,0 +1,18 @@
+Does FEAR (reserve hoarding, SINGLE currency) evolve from 0?  (fear_max=1.5)
+
+FULL (slow + groups + private)     final mean_fear = 0.102 ± 0.019   (pop 245, n_seeds=4)
+
+-- ablations: remove one escape at a time --
+Traceback (most recent call last):
+  File "./eco_life.py", line 204, in <module>
+    run_label("no private risk", private=False, **T)
+  File "./eco_life.py", line 188, in run_label
+    w, traj = evolve(cfg)
+              ^^^^^^^^^^^
+  File "./eco_life.py", line 173, in evolve
+    s, d = w.tick()
+           ^^^^^^^^
+  File "./eco_life.py", line 121, in tick
+    scale = (self.pools[g] / tot) if tot > self.pools[g] else 1.0
+             ~~~~~~~~~~~~~~^~~~~
+ZeroDivisionError: float division by zero

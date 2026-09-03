@@ -1,0 +1,12 @@
+HAND-POLICY mechanism test — real vs scram, fixed 'semelparate-when-dying' policy
+decay  seed   n   real   scram  (real-scram)  term_b
+0.10   1      0  0.000  0.000   +0.000      0
+0.10   2      0  0.000  0.000   +0.000      0
+0.10   3      0  0.000  0.000   +0.000      0
+0.10   4      0  0.000  0.000   +0.000      0
+  >>> decay=0.10: mean(real-scram)=+0.000 ± 0.000 (n=4)
+0.06   1      0  0.000  0.000   +0.000      0
+0.06   2      0  0.000  0.000   +0.000      0
+0.06   3      0  0.000  0.000   +0.000      0
+0.06   4      0  0.000  0.000   +0.000      0
+  >>> decay=0.06: mean(real-scram)=+0.000 ± 0.000 (n=4)

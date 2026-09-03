@@ -1,0 +1,16 @@
+=== MECHANISM CHECK: fearless-only vs fearful-only (does fear build a buffer?) ===
+cond          | n_final margin  births  deaths(H/E)
+fear=0.0 calm  |   41     0.07      30   85/0
+fear=0.6 calm  |   24     0.08       0   59/13
+fear=0.0 harsh |   58     0.09      70   108/0
+fear=0.6 harsh |   28     0.13      19   75/12
+
+=== FEAR COMPETITION (fearless vs fearful=0.6) vs harsh-phase severity ===
+(seasonal period=100; amp=0 is calm. frac_fear>0.5 => fear favored)
+harsh_amp     frac_fear (mean±SD)     n̄  favored?
+     0.00       0.208 ± 0.135        60.5  fearless
+     0.40       0.120 ± 0.062        79.0  fearless
+     0.70       0.610 ± 0.354        35.0  FEAR
+     1.00       0.368 ± 0.412        56.8  fearless
+
+wrote results/eco_fear_v2.csv

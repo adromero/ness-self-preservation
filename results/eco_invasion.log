@@ -1,0 +1,13 @@
+INVASION ASSAY — s(real vs scram) per generation | actionable K-regime decay=0.06 lam=0.5 brood=1 window=220 reps=30
+
+brain   condition           mean_s     SEM      t  n
+MLP-8   test(real senses)   -0.0011  0.0063  -0.18  30
+MLP-8   null(both scram)   +0.0149  0.0099  +1.51  30
+linear  test(real senses)   +0.0057  0.0033  +1.72  30
+linear  null(both scram)   +0.0066  0.0058  +1.12  30
+
+Value of information  s_test - s_null  (per generation):
+  MLP-8  : Δs = -0.0160  (SE 0.0117, t≈-1.36, n_test=30 n_null=30)
+  linear : Δs = -0.0008  (SE 0.0067, t≈-0.12, n_test=30 n_null=30)
+
+wrote results/eco_invasion.csv

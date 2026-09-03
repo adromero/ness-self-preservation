@@ -1,0 +1,6 @@
+VALLEY-LOCK TEST: seed fear high in FULL ecology; is it maintained (adaptive) or eroded?
+init_fear     FULL(reserve=20)     NEUTRAL(reserve=0)
+     0.00   0.082 ± 0.017      0.116 ± 0.026
+     0.50   0.451 ± 0.023      0.441 ± 0.090
+     1.00   0.989 ± 0.026      0.941 ± 0.090
+     1.50   1.441 ± 0.012      1.333 ± 0.050  <- fear MAINTAINED above bias (adaptive)

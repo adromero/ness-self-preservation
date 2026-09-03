@@ -1,0 +1,13 @@
+
+=== baseline (terminal_repro=False)  lam=0.5 N=256 S=360.0 decay=0.05 brood=2 ===
+  seed=2000 n=  0  L0=0.766 real=0.019 scram=0.104  (real-scram)=-0.086  term_b=0
+  seed=2001 n=  0  L0=0.883 real=0.003 scram=0.003  (real-scram)=+0.000  term_b=0
+  seed=2002 n=225  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2003 n=217  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2004 n=207  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2005 n=196  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  seed=2006 n=  0  L0=0.408 real=0.005 scram=0.475  (real-scram)=-0.470  term_b=0
+  seed=2007 n=209  L0=1.000 real=0.000 scram=0.000  (real-scram)=+0.000  term_b=0
+  >>> baseline: mean(real-scram) = -0.069 ± 0.154  (SEM 0.054, n=8)
+
+wrote results/eco_fix_seasonal_bigN.csv
