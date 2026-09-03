@@ -6,6 +6,8 @@ This repo is a small, rigorous investigation into whether *self-preservation* (a
 
 Everything here runs on a single consumer GPU (the whole thing was developed on an RTX 3080), needs no API keys or network, and every headline number is backed by a committed run log or CSV in [`results/`](results/).
 
+📄 **Rendered reports (styled, with figures):** **https://adromero.github.io/ness-self-preservation/**
+
 ---
 
 ## TL;DR
@@ -125,7 +127,6 @@ pip install -r requirements.txt
 
 python ness_monitor.py           # engineering demo (P1/P2), seconds on CPU/GPU
 python eco_life.py               # single-currency null + escapes (fast, CPU)
-python investigation_report.py   # regenerate the styled HTML report into results/
 ```
 
 The neural-substrate experiments (`eco_mvp.py`, `ness_experiment.py`, `eco_invasion.py`, `nessport_*.py`) are heavier and use CUDA if available. `ness_experiment.py` auto-downloads MNIST into `data/` on first run.
@@ -144,7 +145,7 @@ The neural-substrate experiments (`eco_mvp.py`, `ness_experiment.py`, `eco_invas
 | [`ness_experiment.py`](ness_experiment.py) | The original NESS experiment (MNIST awareness sweep) |
 | `eco_invasion.py`, `invasion_test.py`, `nessport_invasion.py` | Invasion / selection-coefficient assays |
 | `eco_c1.py`, `eco_fear.py`, `free_test.py`, `mech_test.py`, `calib*.py` | Controls, sweeps, calibration |
-| `investigation_report.py`, `sowhat.py`, `eco_report.py` | Report generators (render the styled HTML) |
+| [`docs/`](docs/) | Rendered, styled reports (also live at the [Pages site](https://adromero.github.io/ness-self-preservation/)) |
 | [`figures/`](figures/) | The four figures used above |
 | [`results/`](results/) | Every run's CSV + log — the evidence behind each number |
 | [`docs/transcript.md`](docs/transcript.md) | The full research conversation that produced this work |

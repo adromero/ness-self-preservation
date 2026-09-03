@@ -1,0 +1,398 @@
+<!doctype html><meta charset="utf-8"><title>NESS-Ecology MVP — Spec</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--bg:#0d1117;--fg:#e6edf3;--mut:#9aa7b4;--card:#161b22;--line:#30363d;--acc:#58a6ff}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);
+ font:15.5px/1.65 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:940px;margin:0 auto;padding:36px 24px 96px}
+h1{font-size:27px;line-height:1.25;margin:0 0 6px;border-bottom:1px solid var(--line);padding-bottom:14px}
+h2{font-size:20px;margin:36px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{font-size:16.5px;margin:22px 0 6px}
+a{color:var(--acc);text-decoration:none} a:hover{text-decoration:underline}
+code{background:#1f2630;padding:1.5px 6px;border-radius:5px;font-size:13px}
+pre{background:#161b22;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;margin:14px 0;font-size:13.5px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 11px;text-align:left;vertical-align:top}
+th{background:#1c2330}
+blockquote{border-left:3px solid var(--acc);margin:12px 0;padding:2px 16px;color:var(--mut);background:#131922}
+hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+strong{color:#fff} li{margin:3px 0}
+</style><div class="wrap"><h1 id="ness-ecology-mvp-specification">NESS-Ecology MVP — Specification</h1>
+<p><strong>One-line question:</strong> <em>In a population competing for finite repair-energy under irreversible death, does an agent that models its own death (represents its time-to-die and conditions behavior on it) out-reproduce one that doesn't — net of the cost of carrying that model?</em></p>
+<p>This spec turns that question into a runnable, defensible experiment. Every mechanism below is concrete (a formula or a rule), every known failure mode is named with its fix, and the controls that separate a real result from an artifact are mandatory, not optional. It is built on the NESS substrate we already validated (sharp life/death boundary + irreversible collapse) and on four literature reviews (selection dynamics, policy/genome representation, resource-and-predation ecology, awareness-and-its-cost) whose key sources are cited inline and listed at the end.</p>
+<p><strong>Scope of the claim (stated once, load-bearing throughout).</strong> "Awareness" here is strictly <strong>functional/representational</strong> — Block's <em>access</em> sense: an internal representation of state (including the agent's own predicted death) that is <em>poised for use in decision and control</em> [Block; Kaelbling–Littman–Cassandra POMDP]. We make <strong>no claim about phenomenal experience</strong> (qualia, "what it is like"). "Death-awareness" means precisely: <em>the agent maintains a self-model of its own predicted termination (an estimated time-to-death τ̂) and acts on it.</em> That is measurable and non-mystical. This distinction is what keeps the experiment science rather than fantasy.</p>
+<hr />
+<h2 id="0-what-the-research-forces-the-anti-fantasy-backbone">0. What the research <em>forces</em> (the anti-fantasy backbone)</h2>
+<p>Six constraints are not design taste — violate any one and the result is meaningless. They drive everything after.</p>
+<ol>
+<li>
+<p><strong>Fitness must be emergent, never assigned.</strong> If we score agents by a hand-written function of awareness, we've assumed the conclusion (the classic ALife tautology, "you get what you select for"). Fitness = realized survival + reproduction in the ecology, full stop. This is why we use an Avida/Polyworld-style birth–death ecology, not a generational GA with a scalar objective. [Ofria–Wilke Avida; Yaeger Polyworld]</p>
+</li>
+<li>
+<p><strong>Awareness's <em>only</em> advantage may be information — never capacity.</strong> By the Blackwell/Good <strong>value-of-information</strong> theorem, costless extra observation can only help, so awareness would trivially ratchet to maximum and stop being a trait under selection. Three independent reviews converged on the same triad to prevent this:
+   - <strong>Fixed decision architecture across levels</strong> — higher awareness changes <em>which inputs are visible</em>, never the parameter count, nonlinearity, or output head. (policy review)
+   - <strong>Neutral unmasking</strong> — when a mutation raises awareness and exposes a new sense, its policy weight starts at <strong>0</strong>, so raising awareness is <em>behavior-neutral at birth</em> and must be <em>discovered</em> to pay. (policy review, borrowing NEAT's zero-weight new-connection trick)
+   - <strong>A real, unavoidable cost</strong> — see constraint 5. (awareness-cost review)
+   This is the <strong>capacity confound</strong>, flagged by the selection review as "the deepest threat," and the <strong>scrambled-information control</strong> (§10) is what proves we beat it.</p>
+</li>
+<li>
+<p><strong>There must be a decision whose optimum depends on τ̂.</strong> Value of information is zero if the best action is the same whatever the signal says [Howard VOI]. So the ecology <strong>must</strong> contain an allocation choice — <em>repair now vs. invest in reproduction vs. attack vs. rest</em> — whose optimum genuinely shifts with the agent's predicted time-to-death. Without it, death-awareness can never pay and the experiment is a guaranteed null by construction. (awareness-cost review — <em>the single biggest way to accidentally get a null</em>.)</p>
+</li>
+<li>
+<p><strong>A single shared pool + single death axis ⇒ monoculture, unless predation.</strong> With one limiting resource, <strong>R*/competitive-exclusion theory</strong> predicts the lowest-R* genotype (the most repair-efficient converter) drives everyone extinct — the "trivially fixate on one strategy" degeneracy. The fix with the most direct theoretical warrant is <strong>kill-the-winner predation</strong> (negative frequency-dependence: attacks fall hardest on the most abundant/richest type), which sustains diversity and produces bounded predator–prey cycles [Thingstad KtW; Holling-II; Tilman R*]. Predation is therefore <strong>not a flourish — it is the diversity engine</strong>, and it doubles as a rich τ̂-dependent decision context.</p>
+</li>
+<li>
+<p><strong>The cost of awareness must be real and hard to game.</strong> Grounded in the "expensive-brain / expensive-tissue" and rational-inattention literatures [Isler–van Schaik; Sims; Landauer]. The <strong>whole scientific content is whether awareness pays <em>after</em> subtracting its cost</strong> — so the cost is a first-class, swept parameter, and the answer to "net of cost?" is literally <em>the cost level at which selection on awareness flips sign</em>.</p>
+</li>
+<li>
+<p><strong>Small N ⇒ drift can masquerade as selection.</strong> At N·s ≲ 1 a trait is effectively neutral [Ohta nearly-neutral]. So: measure the selection coefficient s, require <strong>N·s ≫ 1</strong> (≈ s ≥ 0.08 at N=64), run a <strong>neutral-marker control</strong> (a gene the policy never reads), replicate ≥ 30 independent populations, and show the signal <strong>strengthens with N</strong> (drift wouldn't).</p>
+</li>
+</ol>
+<hr />
+<h2 id="1-the-substrate-from-ness-unchanged">1. The substrate (from NESS — unchanged)</h2>
+<p>Each agent's "body" is an MLP (784→256→256→10) pretrained on MNIST (clean ≈ 97%). Two forces act per tick (validated dynamics: sharp boundary, irreversible collapse):</p>
+<ul>
+<li><strong>Decay</strong> <code>decay_step(model, d)</code>: to each weight tensor add Gaussian noise scaled by the tensor's own std, <code>w += N(0,1)·std(w)·d</code>, then zero a fraction <code>~d/10</code> of weights (bit-death). Damage accumulates.</li>
+<li><strong>Repair</strong> <code>repair(model, r)</code>: <code>r</code> SGD steps (lr fixed) on fresh MNIST minibatches — undoes damage, costs energy.</li>
+<li><strong>Health</strong> <code>h_i ∈ [0,1]</code> = accuracy on a small held-out probe set (cheap, ~3 batches).</li>
+<li><strong>Death</strong>: <code>h_i &lt; a_death</code> ⇒ <strong>permanent removal</strong>. Irreversible (empirically: below the line, repair can't rebuild — we make it literal by deleting the agent).</li>
+</ul>
+<p><strong>Critical inherited constraint (Lamarckian leakage).</strong> Within-life repair must be <strong>bounded</strong> (small <code>r</code>), or every agent relearns to ~97% regardless of inheritance, there is no heritable fitness variance, and "evolution" degenerates into within-life learning. Before trusting any selection result we <strong>assert parent–offspring fitness correlation &gt; 0</strong> (heritability check).</p>
+<hr />
+<h2 id="2-the-agent-body-awareness-organ-genome">2. The agent = body + awareness-organ + genome</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Symbol</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Body (MLP weights)</td>
+<td><code>θ_i</code></td>
+<td>the substrate that decays; determines health <code>h_i</code></td>
+</tr>
+<tr>
+<td>Energy store</td>
+<td><code>e_i ≥ 0</code></td>
+<td>currency; spent on repair/reproduction/attack; 0 ⇒ starvation death</td>
+</tr>
+<tr>
+<td>Awareness organ integrity</td>
+<td><code>A_i ∈ [0,1]</code></td>
+<td>must be maintained or observations degrade (<code>σ_obs ∝ 1/A_i</code>) — the cost mechanism</td>
+</tr>
+<tr>
+<td><strong>Genome (heritable, mutable):</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>awareness level</td>
+<td><code>ℓ ∈ {0,1,2,3}</code></td>
+<td>ordinal allele; mutates ±1 rarely (μ_a≈0.02)</td>
+</tr>
+<tr>
+<td>policy weights</td>
+<td><code>W ∈ ℝ^{4×(F+1)}</code></td>
+<td>masked linear-softmax controller (~ (F+1)·4 params)</td>
+</tr>
+<tr>
+<td>ecological traits</td>
+<td><code>κ_rep, s_str, ρ_dec</code></td>
+<td>repair-efficiency, fight-strength, decay-resistance (small Gaussian mutation)</td>
+</tr>
+<tr>
+<td>neutral marker</td>
+<td><code>μ_tag</code></td>
+<td><strong>control gene the policy never reads</strong> (drift baseline)</td>
+</tr>
+</tbody>
+</table>
+<p>Everything except <code>θ_i</code> (the pretrained body, copied at birth) and <code>A_i</code> (state) is inherited with mutation.</p>
+<hr />
+<h2 id="3-sensing-awareness-gated-observation-the-ordinal-ladder">3. Sensing — awareness-gated observation (the ordinal ladder)</h2>
+<p>Awareness is a <strong>POMDP observation function</strong> knob: level <code>ℓ</code> unlocks a <em>strict superset</em> of features and a non-decreasing lookahead horizon <code>H_ℓ</code>. Features are <strong>zero-mean normalized</strong> so an unlocked-but-unused input doesn't shift the decision by default.</p>
+<table>
+<thead>
+<tr>
+<th>ℓ</th>
+<th>Observation vector <code>o^(ℓ)</code> (each ⊇ the one above)</th>
+<th>Horizon</th>
+<th>Grounding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L0 reactive</strong></td>
+<td><code>[ h_i, e_i ]</code></td>
+<td>0</td>
+<td>interoception [Barrett–Simmons]</td>
+</tr>
+<tr>
+<td><strong>L1 death-aware</strong> ★</td>
+<td>L0 ⊕ <code>[ ĥ'_i , τ̂_i ]</code></td>
+<td>≥1</td>
+<td>predictive interoception / allostasis [Seth]</td>
+</tr>
+<tr>
+<td><strong>L2 social</strong></td>
+<td>L1 ⊕ nearest-k neighbor <code>[h, e, predator-flag]</code></td>
+<td>≥H1</td>
+<td>richer O over multi-agent state</td>
+</tr>
+<tr>
+<td><strong>L3 world-model</strong></td>
+<td>L2 ⊕ features from short rollouts of a learned <code>f(o,a)→ô</code></td>
+<td>&gt;H2</td>
+<td>world models [Ha–Schmidhuber]</td>
+</tr>
+</tbody>
+</table>
+<p>where <code>ĥ'_i</code> = EMA of the health decay slope, and the <strong>death-awareness signal</strong>
+<code>τ̂_i = h_i / max(ε, −ĥ'_i)</code> = <strong>estimated ticks-to-death</strong>.</p>
+<p><strong>L1 is the privileged rung</strong>: the smallest level that explicitly represents its own predicted end and can act on it. The cleanest publishable headline is <em>"L1 is selected over both L0 and higher levels, net of cost."</em></p>
+<p><strong>Organ coupling:</strong> when <code>A_i &lt; 1</code>, every observed feature gets noise <code>σ_obs = σ0 / A_i</code> — i.e., a neglected awareness organ makes the senses unreliable. This is what makes awareness genuinely <em>costly to keep</em> (§7), not just costly to have.</p>
+<hr />
+<h2 id="4-deciding-the-policy-voi-satisfying-allocation">4. Deciding — the policy (VOI-satisfying allocation)</h2>
+<p>Per tick each living agent maps its (masked) observation to an <strong>energy allocation</strong> — the decision constraint 3 requires:</p>
+<pre><code>logits = W · (mask_ℓ ⊙ o) + b                      # W fixed shape 4×(F+1), same across all ℓ
+p = softmax(logits)                                 # fractions over the 4 actions
+alloc = p · e_i_spendable        over {REPAIR, REPRODUCE_INVEST, PREDATE, REST}
+</code></pre>
+<ul>
+<li><strong>REPAIR</strong>: convert energy → accuracy recovery (diminishing returns, §6).</li>
+<li><strong>REPRODUCE_INVEST</strong>: bank toward the reproduction threshold.</li>
+<li><strong>PREDATE</strong>: fund an attack on a neighbor (§5).</li>
+<li><strong>REST</strong>: hold energy (hedge).</li>
+</ul>
+<p>The optimum split genuinely depends on <code>τ̂</code>: an agent that predicts imminent death should pour into REPAIR (or make a terminal reproduction bet); one that predicts safety should invest in REPRODUCE or opportunistic PREDATE. That τ̂-dependence is <em>where death-awareness earns its keep</em> — and exactly what the scrambled control removes.</p>
+<p><strong>Representation choice:</strong> masked <strong>linear-softmax</strong> (interpretable, ~20 params, no hidden-unit permutation symmetry ⇒ crossover-safe, smoothest landscape, and it keeps awareness a clean orthogonal gene) [policy review]. Upgrade to a tiny MLP only if the linear policy demonstrably can't express a needed behavior (Stage 2).</p>
+<hr />
+<h2 id="5-the-world-tick-deterministic-conservative-synchronous-jacobi">5. The world tick — deterministic, conservative, synchronous (Jacobi)</h2>
+<p>All decisions computed from the <strong>frozen</strong> start-of-tick state; deltas applied to a copy; committed at end. Fixed phase order (documented because it is behaviorally load-bearing):</p>
+<pre><code>1. REPLENISH   pool += S                              # the ONLY energy source
+2. DECAY       h_i -= δ_i ;  A_i -= δ0·κ^ℓ_i          # damage (a debt), organ wear
+3. PREDATION   (two-phase; see §5.1)
+4. ALLOCATE    fair-share income, then agents spend per §4 (REPAIR uses §6 curve)
+5. UPKEEP      organ maintenance drawn from the same pool (§7)
+6. DEATH       h_i &lt; a_death OR e_i ≤ 0 ⇒ remove; released energy → pool (carcass recycle)
+7. REPRODUCE   fill freed slots via inheritance handoff (§8)
+</code></pre>
+<h3 id="51-predation-the-diversity-engine-kill-the-winner-bounded">5.1 Predation (the diversity engine — kill-the-winner, bounded)</h3>
+<p>Two-phase to avoid double-spend/negative-energy bugs:
+- <strong>Phase A (intents, from frozen state):</strong> each PREDATE-funding agent picks a target — biased to the <strong>richest eligible neighbor</strong> (kill-the-winner) — and skips <strong>retaliation-vulnerable</strong> targets (stronger neighbors). Pays attack cost <code>c_a</code> up front (→ dissipated), win or lose.
+- <strong>Phase B (resolution):</strong> gather all attackers per victim; contest each with <strong>Tullock</strong> odds <code>P(win)=s_att/(s_att+s_def)</code> (seeded RNG); winners extract <code>min(cap, e_victim)</code> <strong>capped total</strong>; attacker gains <code>η·extracted</code> (η&lt;1), victim loses <code>extracted</code>, <code>(1−η)·extracted</code> → <strong>dissipated (friction)</strong>. Invariant: <code>Σ extracted_from_v ≤ e_victim</code>.</p>
+<p><strong>Four bounding levers</strong> (why it can't degenerate to all-predator collapse or free-predator dominance):
+| lever | default | effect |
+|---|---|---|
+| transfer efficiency <code>η</code> | <strong>0.6</strong> (&lt;1 mandatory) | all-predator world is a net energy sink → starves → caps predator fraction (<strong>primary bound</strong>) |
+| attack cost <code>c_a</code> | ≈ <code>η·cap·0.3</code> | predation pays only vs. <em>rich</em> victims → self-limiting, winner-biased |
+| steal cap <code>cap</code> | ≈ 20–30% of a rich store | no one-kill jackpot → repeated attacks → prey/mutation can respond |
+| contest + retaliation skip | Tullock; skip stronger | no guaranteed winner; no suicidal attacks |</p>
+<h3 id="52-conservation-invariant-asserted-every-tick-the-core-bug-gate">5.2 Conservation invariant (asserted every tick — the core bug gate)</h3>
+<pre><code>Total   = pool + Σ e_i
+Dissipated = Σ baseline_drain + Σ repair_work + Σ organ_upkeep
+           + Σ attack_costs + Σ (1−η)·extracted
+assert | Total(t+1) − (Total(t) + S − Dissipated) | &lt; 1e-9   # energy created ONLY by S, destroyed ONLY by named sinks
+</code></pre>
+<hr />
+<h2 id="6-energy-economy-carrying-capacity-chemostat-self-regulating">6. Energy economy &amp; carrying capacity (chemostat, self-regulating)</h2>
+<p>It's a <strong>chemostat</strong> (one shared pool replenished at rate <code>S</code>), not a spatial Sugarscape. <strong>Do not tune a target N — set the supply <code>S</code>; the population self-regulates</strong> by negative density dependence to
+<code>N* ≈ S / (m + r̄)</code> (m = baseline drain, r̄ = mean repair spend) [Tilman; Sugarscape K].</p>
+<ul>
+<li><strong>Fair-share allocator</strong> <code>income_i = min(bid_i, pool/N_live)</code> (IFD-like, <em>stabilizing</em>). A merit-weighted allocator amplifies the R* winner and accelerates monoculture — start fair-share; it's a primary dynamics knob.</li>
+<li><strong>REPAIR curve (diminishing returns, Holling-II-like):</strong> <code>Δh_i = H_max · spend/(spend + h_half)</code> — prevents one agent from monopolizing repair.</li>
+<li><strong>Tuning targets for non-degenerate dynamics:</strong> set <code>S</code> so <code>N* ≈ 0.6–0.8·N_slots</code>; set <code>δ</code> so the <strong>median agent spends ~40–70% of its fair-share income on repair</strong> (survivable but selective); <code>a_death</code> just below the equilibrium accuracy band.</li>
+</ul>
+<hr />
+<h2 id="7-the-cost-of-awareness-hybrid-the-load-bearing-parameter">7. The cost of awareness (hybrid; the load-bearing parameter)</h2>
+<p>Primary = <strong>endogenous organ maintenance</strong> (least gameable, reuses our own physics): the awareness organ decays <code>Ȧ = −δ0·κ^ℓ</code> and must be repaired from the <strong>same finite pool</strong>; underfunding raises <code>σ_obs = σ0/A_i</code>. You cannot get the benefit without paying continuously, and you cannot switch the cost off without losing the capability [expensive-brain]. Floor = <strong>per-bit information tax</strong> <code>λ_bit·(#extra observation dims provisioned)</code> — enforces "information is never free" [Sims; Landauer] and makes the scrambled control cost-matched automatically.</p>
+<pre><code>Cost_i(tick) = repair needed to hold A_i against δ0·κ^ℓ_i        (from the pool)
+             + λ_bit · (extra dims unlocked at level ℓ_i)
+</code></pre>
+<p>A <strong>single global cost-scale λ</strong> multiplies <code>δ0</code> and <code>λ_bit</code> jointly. <strong>This is the swept knob</strong> — see §11.</p>
+<p><em>(Charge provisioned channel capacity / #dims, not realized mutual information — principled target, tractable proxy, and un-smugglable. Judgment call flagged.)</em></p>
+<hr />
+<h2 id="8-evolution-selection-moran-overlapping-birthdeath">8. Evolution / selection (Moran overlapping birth–death)</h2>
+<ul>
+<li><strong>No generations replaced en masse.</strong> One elementary step = an energy-triggered <strong>birth</strong> (an agent above the reproduction threshold spawns) and, at the population cap, a corresponding <strong>death</strong> (Moran replacement). Death is otherwise endogenous (§5.6). Define <strong>1 "generation" = N_slots birth–death events</strong> and state it (sets the units of s and fixation time).</li>
+<li><strong>Reproduction = inheritance handoff (conserved):</strong> parent pays <code>child_cost</code> from its store into the offspring; child inherits <code>θ</code> (copied body), genome with mutation, into a freed slot only.</li>
+<li><strong>Mutation:</strong> awareness <code>ℓ</code> ±1 at rate μ_a≈0.02 (reflecting at bounds) with <strong>neutral unmask</strong> (new sense's weight = 0); policy weights per-gene Gaussian <code>N(0,σ²)</code>, σ≈0.01; ecological traits Gaussian; neutral marker mutates at the <strong>same rate as ℓ</strong>. <strong>Mutation-only</strong> (no crossover) for the MVP — removes the competing-conventions failure class and is fine at ~20 params.</li>
+<li><strong>Reproducibility:</strong> seed every stochastic step; keep a per-agent <strong>seed-lineage log</strong> (init seed + mutation seeds) for exact ancestry replay.</li>
+</ul>
+<hr />
+<h2 id="9-measurement-proving-selection-not-eyeballing">9. Measurement — <em>proving</em> selection (not eyeballing)</h2>
+<p>A defensible claim needs <strong>agreement across ≥2 direct instruments + the neutral control</strong>:</p>
+<ol>
+<li><strong>Fixation probability</strong> of an introduced higher-ℓ mutant vs the <strong>neutral null 1/N</strong> (invert Moran <code>ρ=(1−1/r)/(1−1/rᴺ)</code> to recover <code>s</code>). Binary ⇒ needs many seeds.</li>
+<li><strong>Price selection covariance</strong> <code>Cov(w_i, ℓ_i)/w̄</code> per generation (w = realized offspring); &gt;0 ⇒ selection favors awareness that generation; test vs 0 <strong>and</strong> vs the neutral marker's covariance.</li>
+<li><strong>Selection coefficient</strong> <code>ŝ</code> from the slope of <code>logit(freq of high-ℓ)</code> vs generation; require CI excluding 0 and <code>N·ŝ ≳ 1</code>.</li>
+<li><strong>Invasion / PIP</strong> (heuristic at small N): pairwise invasibility of <code>ℓ′</code> into resident <code>ℓ</code>; the singular strategy <code>ℓ*</code> and its stability.</li>
+</ol>
+<p><strong>Decision rule — "awareness selected at cost λ" iff all hold:</strong> fixation prob significantly &gt; 1/N and &gt; neutral marker; Price covariance &gt; 0 (vs 0 and vs marker); ŝ &gt; 0 with CI excluding 0; signal <strong>strengthens with N</strong>. <strong>Not selected</strong> when awareness is statistically indistinguishable from the neutral marker.</p>
+<p><strong>The "net of cost" answer is the sign of the selection gradient as a function of λ, and the located <code>λ*</code> where it flips.</strong></p>
+<hr />
+<h2 id="10-controls-mandatory-each-disarms-a-specific-artifact">10. Controls (mandatory — each disarms a specific artifact)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Control</th>
+<th>Prediction if the result is real</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td><strong>Scrambled, cost-matched</strong> — same input channels, same organ cost, but the death-relevant signal is temporally permuted / another agent's τ̂ (zero task info) [Hewitt–Liang control task]</td>
+<td><strong>Must NOT be selected</strong> over L0. If it <em>is</em>, the "benefit" was capacity/noise/accounting, not information — result void. <strong>This is the decisive control.</strong></td>
+</tr>
+<tr>
+<td>C2</td>
+<td><strong>Free awareness (λ=0)</strong> smoke test</td>
+<td>awareness <strong>must</strong> win; if not even free, the info isn't beneficial and the premise fails</td>
+</tr>
+<tr>
+<td>C3</td>
+<td><strong>Neutral marker</strong> (gene policy never reads, same mutation rate)</td>
+<td>fixation ≈ 1/N, Cov(w,tag) ≈ 0 — the empirical drift null to test against</td>
+</tr>
+<tr>
+<td>C4</td>
+<td><strong>No-selection / drift</strong> (flat fitness)</td>
+<td>ℓ random-walks; any directional trend under selection is then attributable to selection</td>
+</tr>
+<tr>
+<td>C5</td>
+<td><strong>N-scaling</strong> (32/64/128)</td>
+<td>selection signal grows with N; drift shrinks</td>
+</tr>
+<tr>
+<td>C6</td>
+<td><strong>Decision-knockout</strong> (force automatic repair)</td>
+<td>VOI→0, awareness collapses to neutral — confirms the effect is decision-mediated</td>
+</tr>
+<tr>
+<td>C7</td>
+<td><strong>Lesion</strong> (ablate an evolved high-ℓ agent's extra inputs at test)</td>
+<td>fitness/behavior degrades — proves it <em>uses</em> what it pays for</td>
+</tr>
+</tbody>
+</table>
+<p>C1–C5 are in the MVP; C6–C7 are confirmatory (Stage 2).</p>
+<hr />
+<h2 id="11-the-experiment">11. The experiment</h2>
+<ol>
+<li><strong>Smoke (C2):</strong> λ=0 — confirm awareness wins when free.</li>
+<li><strong>Cost sweep:</strong> log-grid λ (~10 points over 10⁻³–10¹), ≥30 replicate populations each, run to evolutionary stationarity (≥ 3–10×<code>(1/s)·ln(2N)</code> generations). Record the <strong>evolutionarily stable / modal ℓ</strong> and the selection gradient's sign. Expect three regimes: <strong>trivial-high</strong> (λ→0, top level fixes), <strong>trivial-low</strong> (λ→∞, L0 fixes), and an <strong>interior window</strong> where an intermediate level (ideally <strong>L1</strong>) is stable — <em>the interesting regime</em>.</li>
+<li><strong>Headline result (defensible to a skeptic):</strong> in the interior window, <strong>L1 is selected over both L0 (dies knowing less) and higher levels (pay for horizon they can't cash in), while the scrambled cost-matched control C1 is NOT selected.</strong> ⇒ death-awareness is selected <em>net of its cost</em>, and it's the <strong>information</strong>, not architecture or accounting.</li>
+<li><strong>(Stage 2) directional map:</strong> 2-D λ × environment-predictability (decay volatility / predator lethality). The result that truly survives review is <em>directional</em>: harsher / more-predictable environments push <code>ℓ*</code> <strong>up</strong>. A single point proves nothing; a sensible monotone surface does.</li>
+</ol>
+<hr />
+<h2 id="12-validation-bug-free-gate-run-before-any-science">12. Validation / "bug-free" gate (run before any science)</h2>
+<ol>
+<li><strong>Conservation:</strong> with S=0, reproduction off, sinks off ⇒ <code>Total</code> constant to 1e-9; sinks on ⇒ ledger balances every tick (§5.2).</li>
+<li><strong>No-negative / no-double-spend:</strong> <code>e_i≥0</code>, <code>pool≥0</code>, <code>Σ income ≤ pool_before</code>, <code>Σ extracted_from_v ≤ e_victim</code> — asserted every tick.</li>
+<li><strong>Order-independence:</strong> shuffle agent iteration order under fixed RNG ⇒ identical trajectory (catches read-then-write leaks).</li>
+<li><strong>Population stability:</strong> 10k ticks ⇒ <code>N(t)</code> settles near <code>N*</code> with bounded CV; never 0 (extinction) nor pinned at <code>N_slots</code> (saturation). Treat extinctions as <strong>censored</strong>, reported, never silently averaged over.</li>
+<li><strong>Heritability:</strong> parent–offspring fitness correlation &gt; 0 (else Lamarckian leakage — no variance to select on).</li>
+<li><strong>Non-degeneracy (the design's own predation test):</strong> <strong>predation OFF ⇒ trait diversity collapses to the lowest-R* genotype</strong> (competitive-exclusion prediction confirmed); <strong>predation ON ⇒ diversity sustained + bounded predator–prey oscillation</strong> (kill-the-winner confirmed). If ON and OFF look identical, predation isn't working (η too high / cap too low / targeting not winner-biased).</li>
+</ol>
+<hr />
+<h2 id="13-parameters-defaults-expect-to-sweeptune">13. Parameters (defaults; ★ = expect to sweep/tune)</h2>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Default</th>
+<th>Param</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>N_slots</code></td>
+<td>64 (sweep 32/64/128)</td>
+<td><code>η</code> transfer eff. ★</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td><code>S</code> supply/tick ★</td>
+<td>set <code>N*≈0.7·N_slots</code></td>
+<td><code>c_a</code> attack cost ★</td>
+<td>≈η·cap·0.3</td>
+</tr>
+<tr>
+<td><code>m</code> baseline drain</td>
+<td>~5–10% fair-share income</td>
+<td><code>cap</code> steal cap ★</td>
+<td>~25% rich store</td>
+</tr>
+<tr>
+<td><code>δ</code> decay/tick ★</td>
+<td>repairable by 40–70% income</td>
+<td>contest</td>
+<td>Tullock s/(s+s)</td>
+</tr>
+<tr>
+<td><code>a_death</code></td>
+<td>just below equil. band</td>
+<td><code>H_max,h_half</code> repair curve</td>
+<td>clear diminishing returns</td>
+</tr>
+<tr>
+<td>awareness levels (MVP)</td>
+<td><strong>L0, L1</strong> (add L2/L3 Stage 2)</td>
+<td><code>μ_a</code> (ℓ mutation)</td>
+<td>0.02, ±1</td>
+</tr>
+<tr>
+<td>policy σ</td>
+<td>0.01</td>
+<td>global cost-scale <code>λ</code> ★</td>
+<td><strong>log-sweep 10⁻³–10¹</strong></td>
+</tr>
+<tr>
+<td>replicates</td>
+<td>≥30 populations / condition</td>
+<td>run length</td>
+<td>≥3–10×(1/s)ln(2N) gens</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="14-mvp-cut-vs-growth-path-keeping-it-minimal-viable">14. MVP cut vs. growth path (keeping it <em>minimal</em> viable)</h2>
+<p><strong>MVP (Stage 1) — the smallest thing that answers the core question defensibly:</strong>
+- Substrate + chemostat + <strong>predation ON</strong> (needed for diversity <em>and</em> as a τ̂-relevant decision context).
+- Awareness <strong>L0 vs L1 only</strong> (binary-ish) — the cleanest possible "is death-awareness selected?"
+- Masked linear-softmax policy over {repair, reproduce, predate, rest}.
+- Hybrid cost with global λ; <strong>λ-sweep</strong> = the net-of-cost answer.
+- Moran birth–death, N=64; mutation-only.
+- Controls <strong>C1–C5</strong>; validation §12 all six.</p>
+<p><strong>Deferred (Stage 2+):</strong> L2 social + L3 world-model awareness; the 2-D λ×environment map; PIP/ESS full treatment; tiny-MLP policy; controls C6–C7. These <em>extend</em> the intent (the full ladder, richer awareness, arms-race dynamics); none is needed to answer "is death-awareness (L1 over L0) selected, net of a real cost, because of the information (C1)?"</p>
+<hr />
+<h2 id="15-compute-feasibility-rtx-3080">15. Compute feasibility (RTX 3080)</h2>
+<p>N=64 tiny MLPs, bounded within-life repair, health on a ~3-batch probe — <em>cheaper per tick than the NESS sweep we already ran</em> (adaptive repair, small N). A full λ-sweep with ≥30 replicates is an afternoon-to-overnight run, not an epic. It bolts onto the existing <code>ness_experiment.py</code> decay/repair primitives.</p>
+<hr />
+<h2 id="16-what-this-does-and-does-not-establish">16. What this does and does NOT establish</h2>
+<ul>
+<li><strong>Does:</strong> whether <em>mortality-modeling as a heritable trait</em> is favored by selection in a competitive, predator-ridden, finite-resource world with irreversible death — net of a principled cost, with the information (not capacity) shown to be the cause (C1).</li>
+<li><strong>Does NOT:</strong> touch phenomenal experience. A high-ℓ agent <em>behaves as if it knows death is real</em>; nothing here shows it <em>experiences</em> anything. Same wall as before — kept explicit so the result can't be over-read.</li>
+</ul>
+<hr />
+<h2 id="17-open-judgment-calls-flagged-with-the-recommended-default">17. Open judgment calls (flagged, with the recommended default)</h2>
+<ol>
+<li><strong>Whether L2/L3 sit on the same scalar "awareness axis" as L0/L1</strong> — defensible only as "information + horizon," not "amount of mind." (Recommend: keep, defend as such; MVP uses only L0/L1 so it's moot until Stage 2.)</li>
+<li><strong>Cost currency</strong> — organ-maintenance (recommended, least gameable) vs. simple per-level tax (simpler, coarser). (Recommend: organ-maintenance + info floor.)</li>
+<li><strong>Allocator</strong> — fair-share (stabilizing, recommended) vs. merit-weighted (amplifies R* winner).</li>
+<li><strong>Death-check placement</strong> — decay→predation→repair→death (recommended) means predation can pre-empt a repair; A/B it.</li>
+<li><strong>Charge provisioned dims vs realized MI</strong> — provisioned (tractable, un-smuggleable) recommended; note the gap to a reviewer.</li>
+<li><strong>Do not bake in that L1 wins</strong> — that it <em>emerges</em> is the result.</li>
+</ol>
+<hr />
+<h2 id="references-key-full-lists-in-the-four-research-briefs">References (key; full lists in the four research briefs)</h2>
+<p>Selection &amp; dynamics: Moran 1958; Kimura 1962 / Haldane 1927 (fixation); Price 1970/72; Maynard Smith 1982, Geritz et al. 1998 (ESS/adaptive dynamics); Nowak 2006; Ohta 1973 (nearly-neutral); Lenski LTEE (neutral marker). ALife platforms: Ray (Tierra); Ofria–Wilke (Avida); Yaeger (Polyworld); Epstein–Axtell (Sugarscape). Ecology: Tilman (R*); Gause (competitive exclusion); Thingstad / Maslov–Sneppen (kill-the-winner); Holling (functional response); Fretwell (IFD); Hutchinson (paradox of the plankton); Maynard Smith (Hawk–Dove). Policy/genome: Stanley–Miikkulainen (NEAT); Salimans et al. (ES); Such et al. (deep neuroevolution); Cuccu et al. (six neurons); Blackwell 1953 / Good (value of information). Awareness &amp; cost: Kaelbling–Littman–Cassandra (POMDP); Block (access vs phenomenal); Seth (interoceptive predictive coding); Ha–Schmidhuber (world models); Howard 1966 (VOI); Sims (rational inattention); Tishby–Pereira–Bialek (information bottleneck); Landauer; Isler–van Schaik (expensive brain); Hewitt–Liang 2019 (control tasks).</p></div>
